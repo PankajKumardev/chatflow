@@ -8,7 +8,7 @@ const server = http.createServer(app)
 
 const io = new Server(server,{
     cors:{
-        origin:["https://chatflow-git-main-pankaj-kumars-projects-8ff53621.vercel.app"],
+        origin:["https://chatflow-nine.vercel.app"],
         credentials:true  
     }
 })
