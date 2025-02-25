@@ -13,11 +13,8 @@ const __dirname = path.resolve();
 
 app.use(
   cors({
-    origin: 'https://chatflow-frontend.vercel.app', // Allow specific origin
-    credentials: true, // Allow credentials (cookies, etc.)
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'], // Ensure OPTIONS method is allowed for preflight requests
-    allowedHeaders: ['Content-Type', 'Authorization'], // Ensure necessary headers are allowed
-    exposedHeaders: ['Content-Range', 'X-Content-Range'], // Expose any required headers
+    origin: '*', // Allow all origins
+    credentials: true,
   })
 );
 
