@@ -33,7 +33,7 @@ import messageRouter from './routes/message.route.js';
 app.use('/api/auth', userRouter);
 app.use('/api/messages', messageRouter);
 
-app.get('*', (req, res) => {
+app.get('*', (_, res) => {
   res.sendFile(path.join(__dirname, '../Frontend', 'dist', 'index.html'));
 });
 
