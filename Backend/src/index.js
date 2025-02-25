@@ -13,7 +13,7 @@ const __dirname = path.resolve();
 
 app.use(
   cors({
-    origin: '*', // Allow all origins
+    preflightContinue: true,
     credentials: true,
   })
 );
