@@ -13,12 +13,11 @@ const __dirname = path.resolve();
 
 app.use(
   cors({
-    origin: 'https://chatflow-frontend.vercel.app',
-    preflightContinue: false,
-    optionsSuccessStatus: 204,
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    allowedHeaders: 'Content-Type,Authorization',
-    credentials: true,
+    origin: ['https://chatflow-frontend.vercel.app', 'https://chatflow-nine.vercel.app'], // Allow specific origins
+    credentials: true, // Allow credentials (cookies, etc.)
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'], // Ensure OPTIONS method is allowed for preflight requests
+    allowedHeaders: ['Content-Type', 'Authorization'], // Ensure necessary headers are allowed
+    exposedHeaders: ['Content-Range', 'X-Content-Range'], // Expose any required headers
   })
 );
 
@@ -33,9 +32,13 @@ import messageRouter from './routes/message.route.js';
 app.use('/api/auth', userRouter);
 app.use('/api/messages', messageRouter);
 
-app.get('*', (_, res) => {
-  res.sendFile(path.join(__dirname, '../Frontend', 'dist', 'index.html'));
-});
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../Frontend/dist')));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../Frontend', 'dist', 'index.html'));
+  });
+}
 
 server.listen(PORT, () => {
   console.log('Server is listening on the PORT : ', PORT);
