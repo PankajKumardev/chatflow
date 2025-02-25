@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-const mode = import.meta.env.MODE || 'production';
-
 export const axiosInstance = axios.create({
   baseURL:
-    mode === 'development' ? 'https://chatflow-nine.vercel.app/api' : '/api',
-  withCredentials: true,
+    import.meta.env.MODE === 'development'
+      ? 'https://chatflow-nine.vercel.app/api'
+      : '/api',
+  withCredentials: true, //Enables sending and receiving cookies or other credentials with cross-origin requests.
 });
