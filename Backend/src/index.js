@@ -12,13 +12,13 @@ const PORT = process.env.PORT || 8000;
 const __dirname = path.resolve();
 
 app.use(
-  cors({
-    origin: 'https://chatflow-frontend.vercel.app', // Allow requests only from your frontend
-    credentials: true, // Allow credentials (cookies, etc.)
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    allowedHeaders: 'Content-Type,Authorization',
-    exposedHeaders: 'Content-Range,X-Content-Range',
-  })
+    cors({
+        origin: '*', // Allow requests from all origins
+        credentials: true, // Allow credentials (cookies, etc.)
+        methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+        allowedHeaders: 'Content-Type,Authorization',
+        exposedHeaders: 'Content-Range,X-Content-Range',
+    })
 );
 
 app.use(express.json({ limit: '10mb' }));
