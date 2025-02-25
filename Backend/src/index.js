@@ -21,6 +21,12 @@ app.use(
     })
 );
 
+// Add Access-Control-Allow-Origin header
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', 'https://chatflow-frontend.vercel.app');
+    next();
+});
+
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ limit: '10mb', extended: true }));
 app.use(cookieParser());
