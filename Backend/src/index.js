@@ -13,6 +13,7 @@ const __dirname = path.resolve();
 
 app.use(
   cors({
+    origin: 'https://chatflow-frontend.vercel.app',
     preflightContinue: true,
     credentials: true,
   })
